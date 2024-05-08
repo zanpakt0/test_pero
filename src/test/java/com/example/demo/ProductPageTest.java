@@ -1,12 +1,18 @@
 package com.example.demo;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.junit.jupiter.api.*;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
 public class ProductPageTest {
+
+    public ProductPage productPage;
+
     @BeforeAll
     public static void setUpAll() {
         Configuration.browserSize = "1280x800";
@@ -21,5 +27,8 @@ public class ProductPageTest {
     @Test
     public void search() throws InterruptedException {
         Thread.sleep(1_000);
+        productPage = new ProductPage(WebDriverRunner.getWebDriver());
+        productPage.clickWriteButton();
     }
+
 }
